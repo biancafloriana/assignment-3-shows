@@ -28,6 +28,10 @@ public abstract class Show {
 
     }
 
+    public Show() {
+
+    }
+
     public int getId() {
         return id;
     }

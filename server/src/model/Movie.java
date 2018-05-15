@@ -28,6 +28,10 @@ public class Movie extends  Show {
         this.rating = rating;
     }
 
+    public Movie() {
+        super();
+    }
+
     public String getActors() {
         return actors;
     }

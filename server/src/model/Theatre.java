@@ -24,6 +24,10 @@ public class Theatre extends Show {
         this.actors = actors;
     }
 
+    public Theatre() {
+
+    }
+
     public String getActors() {
         return actors;
     }

@@ -12,6 +12,10 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">false</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <mapping class="model.Movie"/>
+        <mapping class="model.Show"/>
+        <mapping class="model.Theatre"/>
+        <mapping class="model.SportEvent"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -28,6 +28,10 @@ public class SportEvent extends Show {
         this.team2 = team2;
     }
 
+    public SportEvent() {
+
+    }
+
     public String getTeam1() {
         return team1;
     }
