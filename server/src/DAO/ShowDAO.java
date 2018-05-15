@@ -128,7 +128,7 @@ public class ShowDAO {
        query.setParameter("name", s.getName());
 
        s = (Show) query.getSingleResult();
-       System.out.println(s.getDescription());
+
        session.close();
        System.out.println("Found  model.Medication");
         return  s;
