@@ -1,7 +1,7 @@
 package DAO;
 
-import model.Comment;
-import model.Comments;
+import model.BLL.IDAO;
+import model.Rating;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -10,20 +10,22 @@ import org.hibernate.cfg.Configuration;
 import javax.persistence.Query;
 import java.util.List;
 
-public class CommentsDAO {
-    public int create(Comment e) {
+public class RatingIDAO implements IDAO {
+
+    public int create(Object o) {
+        Rating e = (Rating)o;
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
         session.save(e);
         session.getTransaction().commit();
         session.close();
-        System.out.println("Successfully created Comment" + e.toString());
+        System.out.println("Successfully created Rating" + e.toString());
         return e.getId();
     }
 
     private SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(Comment.class);
+        configuration.addAnnotatedClass(Rating.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
         return configuration
@@ -33,12 +35,12 @@ public class CommentsDAO {
     public List read(int showId) {
         Session session = getSessionFactory().openSession();
         // @SuppressWarnings("unchecked")
-        Query q = session.createQuery("FROM Comment where showId =: id");
+        Query q = session.createQuery("FROM Rating where showId =:id");
         q.setParameter("id",showId);
-        List <Comment> commentsList = q.getResultList();
+        List <Rating> RatingsList = q.getResultList();
         session.close();
-        System.out.println("Found " + commentsList.size() + " model.Comment");
-        return  commentsList;
+        System.out.println("Found " + RatingsList.size() + " model.Rating");
+        return  RatingsList;
     }
 
 }

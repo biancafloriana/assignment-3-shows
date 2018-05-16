@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -85,11 +86,13 @@ public class UserDAO {
         Session session = getSessionFactory().openSession();
         Query query = session.createQuery("FROM User where username =:userName");
         query.setParameter("userName", userName);
-
-        User u = (User) query.getSingleResult();
-
+        User u=null;
+        try{u = (User) query.getSingleResult();
         session.close();
-        System.out.println("Found  model.User");
+        System.out.println("Found  model.User");}catch (NoResultException e){
+
+
+        }
         return  u;
     }
 }

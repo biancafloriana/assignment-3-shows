@@ -1,5 +1,6 @@
 package DAO;
 
+import model.BLL.IDAO;
 import model.Activity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,9 +10,10 @@ import org.hibernate.cfg.Configuration;
 import javax.persistence.Query;
 import java.util.List;
 
-public class ActivityDAO {
+public class ActivityIDAO implements IDAO {
 
-    public int create(Activity e) {
+    public int create(Object o) {
+        Activity e = (Activity)o;
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
         session.save(e);
@@ -33,7 +35,7 @@ public class ActivityDAO {
     public List read(int showId) {
         Session session = getSessionFactory().openSession();
         // @SuppressWarnings("unchecked")
-        Query q = session.createQuery("FROM Activity where showId =: id");
+        Query q = session.createQuery("FROM Activity where showId =:id");
         q.setParameter("id",showId);
         List <Activity> ActivitysList = q.getResultList();
         session.close();
