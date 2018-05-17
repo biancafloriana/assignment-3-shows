@@ -1,29 +1,17 @@
 package model;
 
-import javax.persistence.*;
+
 import java.io.Serializable;
 
-@Entity
-@Table(name ="event")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Show implements Serializable {
 
     private static final long serialVersionUID = 6529685098267757691L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column
     private String name;
-
-    @Column
     private String description;
-
-    @Column
-    private  String type;
-
-    @Column
+    private String type;
     private String available;
+
 
     public Show(String name, String description, String type, String available) {
         this.name = name;

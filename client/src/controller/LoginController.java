@@ -1,7 +1,10 @@
 package controller;
 
+import model.BasicUser;
 import model.User;
 import model.BLL.UserServices;
+import view.BasicUserView;
+import view.DetailsView;
 import view.LoginView;
 
 import java.awt.event.ActionListener;
@@ -23,7 +26,8 @@ public class LoginController {
                 Object[] date = loginView.getInfo();
                 User user = new User((String) date[0], (String) date[1]);
                 if(userServices.logIn(user)){
-                  //  new ControllerBuilder().getController(userServices.getUser());
+                    new ControllerBuilder().getController(userServices.getUser());
+
                    System.out.println("ok");
                 }else{
 
@@ -37,6 +41,7 @@ public class LoginController {
     public static void main(String[] args) {
 
         new LoginController();
+        //new BasicUserView();
     }
 
 }

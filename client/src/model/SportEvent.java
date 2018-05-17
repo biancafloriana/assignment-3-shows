@@ -1,21 +1,15 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+
 import java.io.Serializable;
 
-@Entity
-@Table(name="movie")
-@PrimaryKeyJoinColumn(name="id")
 public class SportEvent extends Show implements Serializable {
 
     private static final long serialVersionUID = 6529685098267757694L;
-    @Column
+
     private String team1;
 
-    @Column
+
     private String team2;
 
     public SportEvent(String name, String description, String team1, String team2,String type,String available) {

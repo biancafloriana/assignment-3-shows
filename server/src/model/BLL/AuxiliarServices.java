@@ -5,13 +5,13 @@ import java.util.List;
 public class AuxiliarServices extends GeneralServices  {
 
 
-    protected AuxiliarServices(IDAO IDAO) {
+    public AuxiliarServices(IDAO IDAO) {
         super(IDAO);
     }
 
     @Override
-    public List read(int idShow) {
-        return IDAO.read(idShow);
+    public List read(int idUser) {
+        return IDAO.read(idUser);
     }
 
     @Override
@@ -20,4 +20,18 @@ public class AuxiliarServices extends GeneralServices  {
     }
 
 
+    public void execute(Request r) {
+
+        String type = r.getType();
+        switch (type){
+
+            case "read":
+                List list =this.read((int)r.getData());
+                new ServicesHandler().response(list);
+                break;
+            case "create":
+                this.create(r.getData());
+                break;
+        }
+    }
 }

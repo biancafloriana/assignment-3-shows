@@ -14,6 +14,7 @@ public class ActivityIDAO implements IDAO {
 
     public int create(Object o) {
         Activity e = (Activity)o;
+        System.out.println(e.getShowId()+" "+e.getUserId());
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
         session.save(e);
@@ -32,11 +33,11 @@ public class ActivityIDAO implements IDAO {
                 .buildSessionFactory(builder.build());
     }
 
-    public List read(int showId) {
+    public List read(int userId) {
         Session session = getSessionFactory().openSession();
         // @SuppressWarnings("unchecked")
-        Query q = session.createQuery("FROM Activity where showId =:id");
-        q.setParameter("id",showId);
+        Query q = session.createQuery("FROM Activity where userId =:id");
+        q.setParameter("id",userId);
         List <Activity> ActivitysList = q.getResultList();
         session.close();
         System.out.println("Found " + ActivitysList.size() + " model.Activity");

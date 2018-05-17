@@ -1,19 +1,17 @@
 package model;
 
-import javax.persistence.*;
+
 import java.io.Serializable;
 
-@Entity
-@Table(name ="history")
+
 public class Activity implements Serializable {
 
     private static final long serialVersionUID = 6529685098267757659L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
-    @Column(name ="id_user")
+
     private int userId;
-    @Column(name ="id_show")
+
     private int showId;
 
     public Activity(int id, int userId, int showId) {

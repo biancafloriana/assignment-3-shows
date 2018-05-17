@@ -1,22 +1,17 @@
 package model;
 
-import javax.persistence.*;
+
 import java.io.Serializable;
 
-@Entity
-@Table(name = "rating")
 public class Rating implements Serializable {
 
     private static final long serialVersionUID = 6529685098267757698L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name ="id_user")
     private int userId;
-    @Column(name ="id_show")
+
     private int showId;
-    @Column
+
     private int rating;
 
     public Rating(int id, int userId, int showId, int rating) {

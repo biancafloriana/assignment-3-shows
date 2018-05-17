@@ -107,7 +107,9 @@ public class ShowDAO {
 
     public Show findByID(Show s) {
         Session session = getSessionFactory(s.getClass()).openSession();
-        s = (Show) session.load(Show.class, s.getId());
+        s = session.load(s.getClass(), s.getId());
+        System.out.println(s.getName());
+
         session.close();
         return s;
     }
@@ -124,14 +126,27 @@ public class ShowDAO {
    */ public Show findByTitle(Show s) {
 
        Session session = getSessionFactory(s.getClass()).openSession();
-       Query query = session.createQuery("FROM Movie where name =:name");
+       Query query = session.createQuery("FROM Show where name =:name");
        query.setParameter("name", s.getName());
 
-       s = (Show) query.getSingleResult();
-
+      try {
+          s = (Show) query.getSingleResult();
+      }
+      catch (Exception e ){
+          s = null;
+      }
        session.close();
        System.out.println("Found  model.Medication");
         return  s;
 
+    }
+
+    public List read() {
+        Session session = getSessionFactory( new Show().getClass()).openSession();
+        // @SuppressWarnings("unchecked")
+        List<Show> Show = session.createQuery("FROM Show").getResultList();
+        session.close();
+        System.out.println("Found " + Show.size() + " model.Movie");
+        return Show;
     }
 }

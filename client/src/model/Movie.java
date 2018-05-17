@@ -1,21 +1,14 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+
 import java.io.Serializable;
 
-@Entity
-@Table(name="movie")
-@PrimaryKeyJoinColumn(name="id")
 public class Movie extends  Show implements Serializable {
 
     private static final long serialVersionUID = 6529685098267757693L;
-    @Column
     private String actors;
 
-    @Column
+
     private int rating;
 
     public Movie(String name, String description, String actors, int rating,String type,String available) {

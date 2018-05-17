@@ -13,7 +13,10 @@ public class App {
         catch (IOException e) {
             System.out.println(e);
         }*/
-        Connection connection = Connection.getConnection();
+
+
+        while(true){
+            Connection connection = Connection.getConnection();
         connection.waitForRequest();
-    }
+    }}
 }
