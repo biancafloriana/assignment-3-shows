@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="movie")
+@Table(name="sport")
 @PrimaryKeyJoinColumn(name="id")
 public class SportEvent extends Show implements Serializable {
 

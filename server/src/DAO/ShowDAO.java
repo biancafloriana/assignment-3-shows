@@ -55,7 +55,7 @@ public class ShowDAO {
         // @SuppressWarnings("unchecked")
         List<Show> Show = session.createQuery("FROM SportEvent ").getResultList();
         session.close();
-        System.out.println("Found " + Show.size() + " model.Theatre");
+        System.out.println("Found " + Show.size() + " model.SpotEvent");
         return Show;
     }
 
@@ -108,7 +108,7 @@ public class ShowDAO {
     public Show findByID(Show s) {
         Session session = getSessionFactory(s.getClass()).openSession();
         try{s = session.load(s.getClass(), s.getId());}catch (Exception e){s =null;}
-        //        System.out.println(s.getName());
+               System.out.println(s.getName());
 
         session.close();
         return s;

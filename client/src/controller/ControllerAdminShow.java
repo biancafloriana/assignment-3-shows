@@ -51,77 +51,105 @@ public class ControllerAdminShow {
                 try {
                     Object[] date = view.getShow();
 
-                    if (date[0] != null) {
-                        Show m=null;
+                    if (!type.equals((String) date[3])) {
 
-                        switch (type) {
-
-                            case "movie":
-                                m = new Movie();
-                                m.setId((int) date[0]);
-                                m.setName((String) date[1]);
-                                m.setDescription((String) date[2]);
-                                m.setType((String) date[3]);
-                                ((Movie) m).setActors((String) date[4]);
-                                ((Movie) m).setRating(Integer.parseInt((String) date[5]));
-                                break;
-                            case "theatre":
-                                m = new Theatre();
-                                m.setId((int) date[0]);
-                                m.setName((String) date[1]);
-                                m.setDescription((String) date[2]);
-                                m.setType((String) date[3]);
-                                ((Theatre) m).setActors((String) date[4]);
-                                break;
-                            case "sport":
-                                m = new SportEvent();
-                                m.setId((int) date[0]);
-                                m.setName((String) date[1]);
-                                m.setDescription((String) date[2]);
-                                m.setType((String) date[3]);
-                                ((SportEvent) m).setTeam1((String) date[4]);
-                                ((SportEvent) m).setTeam2((String) date[5]);
-                                break;
-
-                        }
-
-                        m = ShowServices.update(m);
-                        view.updateRow(dateToVector(m));
+                        System.out.println("Not valide type!");
                     } else {
-                        Show m =null;
+                        if (date[0] != null) {
+                            Show m = null;
 
-                        switch (type) {
-                            case "movie":
-                                m = new Movie();
-                               // m.setId((int) date[0]);
-                                m.setName((String) date[1]);
-                                m.setDescription((String) date[2]);
-                                m.setType((String) date[3]);
-                                ((Movie) m).setActors((String) date[4]);
-                                ((Movie) m).setRating(Integer.parseInt((String) date[5]));
-                                break;
-                            case "theatre":
-                                m = new Theatre();
-                                m.setId((int) date[0]);
-                                m.setName((String) date[1]);
-                                m.setDescription((String) date[2]);
-                                m.setType((String) date[3]);
-                                ((Theatre) m).setActors((String) date[4]);
-                                break;
-                            case "sport":
-                                m = new SportEvent();
-                                m.setId((int) date[0]);
-                                m.setName((String) date[1]);
-                                m.setDescription((String) date[2]);
-                                m.setType((String) date[3]);
-                                ((SportEvent) m).setTeam1((String) date[4]);
-                                ((SportEvent) m).setTeam2((String) date[5]);
-                                break;
+                            switch (type) {
+
+                                case "movie":
+
+                                    if (Integer.parseInt((String) date[5]) > 5 || Integer.parseInt((String) date[5]) < 0) {
+
+                                        System.out.println("Not valid rating!");
+                                    } else {
+                                        m = new Movie();
+                                        m.setId((int) date[0]);
+                                        m.setName((String) date[1]);
+                                        m.setDescription((String) date[2]);
+                                        m.setType((String) date[3]);
+                                        ((Movie) m).setActors((String) date[4]);
+                                        ((Movie) m).setRating(Integer.parseInt((String) date[5]));
+                                        m = ShowServices.update(m);
+                                        view.updateRow(dateToVector(m));
+                                    }
+                                    break;
+                                case "theatre":
+                                    m = new Theatre();
+                                    m.setId((int) date[0]);
+                                    m.setName((String) date[1]);
+                                    m.setDescription((String) date[2]);
+                                    m.setType((String) date[3]);
+                                    ((Theatre) m).setActors((String) date[4]);
+                                    m = ShowServices.update(m);
+                                    view.updateRow(dateToVector(m));
+                                    break;
+                                case "sport":
+                                    m = new SportEvent();
+                                    m.setId((int) date[0]);
+                                    m.setName((String) date[1]);
+                                    m.setDescription((String) date[2]);
+                                    m.setType((String) date[3]);
+                                    ((SportEvent) m).setTeam1((String) date[4]);
+                                    ((SportEvent) m).setTeam2((String) date[5]);
+                                    m = ShowServices.update(m);
+                                    view.updateRow(dateToVector(m));
+                                    break;
+
+                            }
+
+
+                        } else {
+                            Show m = null;
+
+                            switch (type) {
+                                case "movie":
+                                    if (Integer.parseInt((String) date[5]) > 5 || Integer.parseInt((String) date[5]) < 0) {
+
+                                        System.out.println("Not valid rating!");
+                                    } else {
+                                        m = new Movie();
+                                        // m.setId((int) date[0]);
+                                        m.setName((String) date[1]);
+                                        m.setDescription((String) date[2]);
+                                        m.setType((String) date[3]);
+                                        ((Movie) m).setActors((String) date[4]);
+                                        ((Movie) m).setRating(Integer.parseInt((String) date[5]));
+                                        m = ShowServices.insert(m);
+                                        view.updateRow(dateToVector(m));
+
+                                    }
+                                    break;
+                                case "theatre":
+                                    m = new Theatre();
+                                    // m.setId((int) date[0]);
+                                    m.setName((String) date[1]);
+                                    m.setDescription((String) date[2]);
+                                    m.setType((String) date[3]);
+                                    ((Theatre) m).setActors((String) date[4]);
+                                    m = ShowServices.insert(m);
+                                    view.updateRow(dateToVector(m));
+
+                                    break;
+                                case "sport":
+                                    m = new SportEvent();
+                                    //m.setId((int) date[0]);
+                                    m.setName((String) date[1]);
+                                    m.setDescription((String) date[2]);
+                                    m.setType((String) date[3]);
+                                    ((SportEvent) m).setTeam1((String) date[4]);
+                                    ((SportEvent) m).setTeam2((String) date[5]);
+                                    m = ShowServices.insert(m);
+                                    view.updateRow(dateToVector(m));
+
+                                    break;
+                            }
+
+
                         }
-
-                        m =ShowServices.insert(m);
-                        view.updateRow(dateToVector(m));
-
                     }
 
                 } catch (Exception e) {

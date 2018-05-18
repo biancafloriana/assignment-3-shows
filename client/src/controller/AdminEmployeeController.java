@@ -53,6 +53,7 @@ public class AdminEmployeeController {
                 //adminEmployeeView.printMessage("Datele nu sunt valide!");
                 //e.printStackTrace();
         };
+        System.out.println("add");
         adminEmployeeView.addListenerAddB(addButtonL);
     }
 
