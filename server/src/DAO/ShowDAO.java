@@ -107,8 +107,8 @@ public class ShowDAO {
 
     public Show findByID(Show s) {
         Session session = getSessionFactory(s.getClass()).openSession();
-        s = session.load(s.getClass(), s.getId());
-        System.out.println(s.getName());
+        try{s = session.load(s.getClass(), s.getId());}catch (Exception e){s =null;}
+        //        System.out.println(s.getName());
 
         session.close();
         return s;

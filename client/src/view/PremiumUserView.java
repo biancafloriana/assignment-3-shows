@@ -11,10 +11,11 @@ public class PremiumUserView {
     private JPanel jpanel;
     private JTable tableShow;
     private DefaultTableModel modelShow;
-    private JButton detailsButton,historyButton;
+    private JButton detailsButton, historyButton, recommend, interested;
     private JButton searchByNameB;
-    private JScrollPane listShow;
-    private JTextField searchT;
+    private JScrollPane listShow, scrollPane1;
+    private JTextField searchT, user;
+    private JTextArea noti;
     private int rowNr = 0;
 
     public PremiumUserView() {
@@ -23,9 +24,15 @@ public class PremiumUserView {
         detailsButton = new JButton("Details");
         searchByNameB = new JButton("Search by name");
         historyButton = new JButton("History");
+        recommend = new JButton("Recommendation");
+        interested = new JButton("Interested");
         tableShow = new JTable();
         listShow = new JScrollPane(tableShow);
         searchT = new JTextField(10);
+        user = new JTextField(10);
+        noti = new JTextArea(4, 30);
+        scrollPane1 = new JScrollPane(noti);
+        noti.setEditable(false);
 
         init();
     }
@@ -38,6 +45,10 @@ public class PremiumUserView {
         jpanel.add(searchT);
         jpanel.add(searchByNameB);
         jpanel.add(historyButton);
+        jpanel.add(interested);
+        jpanel.add(user);
+        jpanel.add(recommend);
+        jpanel.add(noti);
         jframe.setLocation(600, 200);
         jframe.setSize(500, 600);
         jframe.setDefaultCloseOperation(jframe.EXIT_ON_CLOSE);
@@ -74,6 +85,20 @@ public class PremiumUserView {
 
     }
 
+    public void addListenerRecommend(ActionListener ButtonL) {
+        recommend.addActionListener(ButtonL);
+
+    }
+
+    public void addListenerIntresed(ActionListener ButtonL) {
+        interested.addActionListener(ButtonL);
+
+    }
+
+    public String getUser() {
+        return user.getText();
+    }
+
     public void addListenerHistory(ActionListener ButtonL) {
         historyButton.addActionListener(ButtonL);
     }
@@ -83,7 +108,7 @@ public class PremiumUserView {
 
     }
 
-    public String getText(){
+    public String getText() {
         return searchT.getText();
     }
 
@@ -95,5 +120,10 @@ public class PremiumUserView {
 
     public void clear() {
         initTable();
+    }
+
+    public void addNotify(String text) {
+
+        noti.append(text + "\n");
     }
 }

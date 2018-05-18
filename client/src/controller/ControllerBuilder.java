@@ -1,5 +1,6 @@
 package controller;
 
+import model.Admin;
 import model.User;
 
 public class ControllerBuilder {
@@ -13,7 +14,11 @@ public class ControllerBuilder {
                     new BasicUserController(user.getId());
                 break;
             case "premium":
-                    new PremiumUserController(user.getId());
+                    new PremiumUserController(user);
+                    break;
+             default:
+                    new AdminChooseController();
+                    break;
 
         }
 

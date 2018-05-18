@@ -72,6 +72,7 @@ public class ControllerDetails {
         cols.add(s.getId());
         cols.add(s.getName());
         cols.add(s.getDescription());
+        cols.add(s.getType());
 
         switch (type){
 

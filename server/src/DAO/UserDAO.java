@@ -50,8 +50,9 @@ public class UserDAO {
         try {
             em.setUsername(e.getUsername());
             em.setPassword(e.getPassword());
+            em.setType(e.getType());
         } catch (Exception e1) {
-            //e1.printStackTrace();
+            e1.printStackTrace();
             System.out.println("Datele nu au putut fi incarcate!");
 
         }

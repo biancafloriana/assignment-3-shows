@@ -1,7 +1,10 @@
 package controller;
 
 import model.BLL.ShowServices;
+import model.BLL.UserServices;
+import model.PremiumUser;
 import model.Show;
+import model.User;
 import view.PremiumUserView;
 
 import java.awt.event.ActionListener;
@@ -12,16 +15,19 @@ public class PremiumUserController {
 
     private PremiumUserView premiumUserView;
     private int idUser;
+    private PremiumUser premiumUser;
 
-    PremiumUserController(int idUser) {
-        this.idUser = idUser;
+    PremiumUserController(User user) {
+        this.premiumUser =(PremiumUser) user;
+        idUser = premiumUser.getId();
         premiumUserView = new PremiumUserView();
         listShow();
         addListenerSearch();
         addListenerDetails();
         addListenerHistory();
-        //addListenerDeleteB();
-
+        addListenerInterested();
+        addListenerNotify();
+        listNotifications();
 
     }
 
@@ -95,5 +101,38 @@ public class PremiumUserController {
 
         };
         premiumUserView.addListenerHistory(addButtonL);
+    }
+
+    private void listNotifications() {
+
+        List showList = premiumUser.getNotifications();
+
+        for (Object s : showList) {
+
+            premiumUserView.addNotify((String) s);
+        }
+    }
+    private void addListenerInterested() {
+
+        ActionListener addButtonL = arg0 -> {
+
+            Object[] t = premiumUserView.getShow();
+            premiumUser.addInterested((int)t[0]);
+            UserServices.addInterested(premiumUser);
+
+        };
+        premiumUserView.addListenerIntresed(addButtonL);
+    }
+
+    private void addListenerNotify() {
+
+        ActionListener addButtonL = arg0 -> {
+
+            Object[] t = premiumUserView.getShow();
+            int user = Integer.valueOf(premiumUserView.getUser());
+            UserServices.recommend(premiumUser.getId(),user,(int)t[0]);
+
+        };
+        premiumUserView.addListenerIntresed(addButtonL);
     }
 }

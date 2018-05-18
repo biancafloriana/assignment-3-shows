@@ -6,6 +6,7 @@ import model.BLL.UserServices;
 import view.BasicUserView;
 import view.DetailsView;
 import view.LoginView;
+import view.PremiumUserView;
 
 import java.awt.event.ActionListener;
 
@@ -41,7 +42,7 @@ public class LoginController {
     public static void main(String[] args) {
 
         new LoginController();
-        //new BasicUserView();
+        //new PremiumUserView();
     }
 
 }

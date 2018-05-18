@@ -18,8 +18,44 @@ public class ShowServices {
                 break;
             case "findByTitle":
                 this.findByTitle(r.getData());
+                break;
+            case "insert":
+                this.create(r.getData());
+                break;
+            case "update":
+                this.update(r.getData());
+                break;
+            case "delete":
+                this.delete(r.getData());
+                break;
+            case "readMovie":
+                this.readMovie();
+                break;
+            case "readTheatre":
+                this.readTheatre();
+                break;
+            case "readSport":
+                this.readSport();
+                break;
 
         }
+    }
+
+    private void delete(Object data) {
+        new ShowDAO().delete((Show)data);
+
+    }
+
+    private void update(Object data) {
+       new ShowDAO().update((Show)data);
+        new ServicesHandler().response(data);
+
+    }
+
+    private void create(Object data) {
+       new ShowDAO().create((Show)data);
+        new ServicesHandler().response(data);
+
     }
 
     private void findByTitle(Object data) {
@@ -35,6 +71,21 @@ public class ShowServices {
         new ServicesHandler().response(s);
     }
 
+
+    private void readSport() {
+        List list = new ShowDAO().readSportEvent();
+        new ServicesHandler().response(list);
+    }
+
+    private void readTheatre() {
+        List list = new ShowDAO().readTheatre();
+        new ServicesHandler().response(list);
+    }
+
+    private void readMovie() {
+        List list = new ShowDAO().readMovies();
+        new ServicesHandler().response(list);
+    }
     private void read(){
 
         List list = new ShowDAO().read();

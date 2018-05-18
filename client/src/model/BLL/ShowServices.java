@@ -2,7 +2,6 @@ package model.BLL;
 
 import model.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShowServices {
@@ -99,6 +98,68 @@ public class ShowServices {
         return s;
 
 
+
+    }
+
+    public static Show update(Show m) {
+        ServerConnection serverConnection = ServerConnection.getConnection();
+
+        Request r = new Request("update","show",m);
+        serverConnection.makeReguest(r);
+        m = (Show) serverConnection.getResponse();
+        return m;
+    }
+
+    public static Show insert(Show m) {
+        ServerConnection serverConnection = ServerConnection.getConnection();
+
+        Request r = new Request("insert","show",m);
+        serverConnection.makeReguest(r);
+        m = (Show) serverConnection.getResponse();
+        return m;
+    }
+
+    public static void delete(int i) {
+        ServerConnection serverConnection = ServerConnection.getConnection();
+        Show s = new Show();
+        s.setId(i);
+        Request r = new Request("delete","show",s);
+
+    }
+
+    public static List<Show> findAll(String type) {
+        ServerConnection serverConnection = ServerConnection.getConnection();
+        Request r;
+        List shows = null;
+        System.out.println(type);
+        switch (type){
+
+            case "movie":
+
+               r = new Request("readMovie","show",null);
+                serverConnection.makeReguest(r);
+                shows=  serverConnection.getResponseList();
+
+                return  shows;
+            //break;
+            case "theatre":
+
+                r = new Request("readTheatre","show",null);
+                serverConnection.makeReguest(r);
+                 shows=  serverConnection.getResponseList();
+
+                return  shows;
+            //break;
+            case "sport":
+
+                r = new Request("readSport","show",null);
+                serverConnection.makeReguest(r);
+                 shows=  serverConnection.getResponseList();
+
+                return  shows;
+            //break;
+        }
+        return null;
 
     }
 }

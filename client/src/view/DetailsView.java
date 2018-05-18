@@ -89,6 +89,7 @@ public class DetailsView {
         cols.add("id");
         cols.add("name");
         cols.add("description");
+        cols.add("type");
         
         switch (type){
             

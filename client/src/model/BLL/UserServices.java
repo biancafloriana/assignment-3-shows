@@ -1,8 +1,6 @@
 package model.BLL;
 
-import model.Activity;
-import model.BasicUser;
-import model.User;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +20,71 @@ public class UserServices {
         // System.out.println(u.getType());
 
         return true;
+    }
+
+
+
+    public static void recommend(int id, int user, int i) {
+
+        ServerConnection serverConnection = ServerConnection.getConnection();
+        Notification n = new Notification(id, id,user,i);
+        Request r = new Request("create","userPremium",n);
+        serverConnection.makeReguest(r);
+        //user = (User)serverConnection.getRespo
+
+
+    }
+
+    public static void addInterested(PremiumUser premiumUser) {
+
+        ServerConnection serverConnection = ServerConnection.getConnection();
+        // User u = new User("admin","nunu");
+        Request r = new Request("update","userPremium",premiumUser);
+        serverConnection.makeReguest(r);
+        //user = (User)serverConnection.getResponse();
+        // System.out.println(u.getType());
+
+      //  return user;
+    }
+
+    public  void delete(int s) {
+        ServerConnection serverConnection = ServerConnection.getConnection();
+        User u = new User();
+        try {
+            u.setId(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Request r = new Request("delete","user",u);
+        serverConnection.makeReguest(r);
+        //   user = (User)serverConnection.getResponse();
+        // System.out.println(u.getType());
+
+        //return user;
+    }
+
+
+    public  User update(User user) {
+        ServerConnection serverConnection = ServerConnection.getConnection();
+        // User u = new User("admin","nunu");
+        Request r = new Request("update","user",user);
+        serverConnection.makeReguest(r);
+        //user = (User)serverConnection.getResponse();
+        // System.out.println(u.getType());
+
+        return user;
+    }
+
+    public  User insert(User user) {
+
+        ServerConnection serverConnection = ServerConnection.getConnection();
+        // User u = new User("admin","nunu");
+        Request r = new Request("insert","user",user);
+        serverConnection.makeReguest(r);
+        //user = (User)serverConnection.getResponse();
+        // System.out.println(u.getType());
+
+        return user;
     }
 
     public User findByUsername(User user) {
@@ -62,9 +125,14 @@ public class UserServices {
                 switch (type) {
 
                         case "basic":
-                                return (BasicUser) user;
+                                return new BasicUser(user);
+                        case "premium":
+                            //TO DO
+                            return user;
+                         default:
+                                return user;
                 }
-                return null;
+
         }
 
     public static List<Activity> findAll(int idUser) {
@@ -76,5 +144,15 @@ public class UserServices {
         List<Activity> list= (ArrayList)serverConnection.getResponseList();
         return list;
 
+    }
+
+    public List<User> findAllUsers() {
+
+        ServerConnection serverConnection = ServerConnection.getConnection();
+
+        Request r = new Request("read","user",null);
+        serverConnection.makeReguest(r);
+        List<User> list= (ArrayList)serverConnection.getResponseList();
+        return list;
     }
 }
